@@ -3,7 +3,7 @@
 :CUSTOM_ID: petalinux-docker
 :END:
 
-前期准备，需要安装docker，可参考链接：[[https://cloud.tencent.com/document/product/213/46000][腾讯云服务器搭建Docker]]
+前期准备，需要安装docker，可参考链接：[[https://cloud.tencent.com/document/product/213/46000][腾讯云服务器搭建Docker]]、[[https://ynhugo.github.io/p/云服务器搭建docker/#headline-6][Docker换源]]、[[https://github.com/DaoCloud/public-image-mirror?tab=readme-ov-file][public-image-mirror]] 
 
 1. 拷贝petalinux-v2022.1-04191534-installer.run到这个目录中
 
