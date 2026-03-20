@@ -1,0 +1,32 @@
+* petalinux-docker
+:PROPERTIES:
+:CUSTOM_ID: petalinux-docker
+:END:
+
+1. 拷贝petalinux-v2022.1-04191534-installer.run到这个目录中
+
+2. 构建与安装petalinux2022.1
+#+begin_src bash
+docker build --build-arg PETA_VERSION=2022.1 --build-arg PETA_RUN_FILE=petalinux-v2022.1-04191534-installer.run -t petalinux:2022.1 .
+#+end_src
+
+3. 完成安装后运行
+#+begin_src bash
+docker run -ti --rm -e DISPLAY=$DISPLAY --net="host" -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/.Xauthority:/home/vivado/.Xauthority -v $HOME/Projects:/home/vivado/project  petalinux:2022.1 /bin/bash
+#+end_src
+
+以下可忽略：
+
+使用petalinux如果不想被收集使用数据，可以在petalinux的项目根目录中执行`petalinux-util --webtalk off`
+
+WebTalk 是 Xilinx/AMD 的遥测功能，会收集你使用 PetaLinux 工具的匿名数据并发送给 AMD。
+
+关闭它的原因：
+1. 隐私 ― 不想被收集使用数据
+2. 避免构建错误 ― WebTalk 需要联网，在很多环境下会失败，报错如：
+      webtalk failed:Failed to get PetaLinux usage statistics!
+3. 老旧功能 ― 从 PetaLinux 2022.2 开始，WebTalk 已被 AMD 移除
+
+你用的 2022.1 版本还有这个功能，所以建议关闭。如果你确定不会遇到网络问题，也可以不关，不会影响核心功能。
+
+注意：你现在已经在容器内了，运行 petalinux-util --webtalk off 需要在项目目录内执行，而不是全局设置。
