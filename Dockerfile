@@ -105,6 +105,7 @@ USER vivado
 ENV HOME /home/vivado
 ENV LANG en_US.UTF-8
 RUN mkdir /home/vivado/project
+RUN sudo chown -R vivado:vivado /home/vivado/project
 WORKDIR /home/vivado/project
 
 #add vivado tools to path
