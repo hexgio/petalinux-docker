@@ -14,7 +14,9 @@ docker build --build-arg PETA_VERSION=2022.1 --build-arg PETA_RUN_FILE=petalinux
 
 3. 完成安装后运行
 #+begin_src bash
-docker run -ti --rm -e DISPLAY=$DISPLAY --net="host" -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/.Xauthority:/home/vivado/.Xauthority -v $HOME/Projects:/home/vivado/project  petalinux:2022.1 /bin/bash
+# docker run -ti --rm -e DISPLAY=$DISPLAY --net="host" -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/.Xauthority:/home/vivado/.Xauthority -v $HOME/Projects:/home/vivado/project  petalinux:2022.1 /bin/bash
+mkdir -p Projects; cd Projects
+docker run -ti --rm -e DISPLAY=$DISPLAY --net="host" -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/.Xauthority:/home/vivado/.Xauthority -v ./:/home/vivado/project  petalinux:2022.1 /bin/bash
 #+end_src
 这个 Docker 命令的选项解释：
 |-----------------------------------------------+-----------------------------------------|
