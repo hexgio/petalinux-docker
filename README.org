@@ -9,7 +9,10 @@
 
 2. 构建与安装petalinux2022.1
 #+begin_src bash
-docker build --build-arg PETA_VERSION=2022.1 --build-arg PETA_RUN_FILE=petalinux-v2022.1-04191534-installer.run -t petalinux:2022.1 .
+# docker build --build-arg PETA_VERSION=2022.1 --build-arg PETA_RUN_FILE=petalinux-v2022.1-04191534-installer.run -t petalinux:2022.1 .
+
+# 配置阿里云安装源
+docker build --build-arg UBUNTU_MIRROR=mirrors.aliyun.com --build-arg PETA_VERSION=2022.1 --build-arg PETA_RUN_FILE=petalinux-v2022.1-04191534-installer.run -t petalinux:2022.1 .
 #+end_src
 
 3. 完成安装后运行
