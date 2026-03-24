@@ -45,6 +45,14 @@ docker run -ti --rm -e DISPLAY=$DISPLAY --net="host" -v /tmp/.X11-unix:/tmp/.X11
 | /bin/bash                                     | 容器启动后执行的命令                    |
 |-----------------------------------------------+-----------------------------------------|
 
+4. auto.sh的使用
+auto.sh是自动配置离线编译的脚本，需要先在脚本正确配置离线编译环境的路径，然后在创建完petalinux工程并导入硬件描述文件后运行该脚本，示例：
+#+begin_src bash
+./auto.sh zynq
+# 或
+./auto.sh zynqmp
+#+end_src
+
 以下可忽略：
 
 使用petalinux如果不想被收集使用数据，可以在petalinux的项目根目录中执行`petalinux-util --webtalk off`
