@@ -79,9 +79,9 @@ cd $prj_name$prj_index
 # 默认设置是启用 WebTalk 选项，向赛灵思反馈工具使用统计数据。可以运行 petalinux-util --webtalk 命令，关闭 Web Talk 功能
 petalinux-util --webtalk off
 
-petalinux-config --get-hw-description hardware/xilinx-zcu102-2022.1/outputs/project_1.xsa
-
 ../auto.sh zynqmp
+
+petalinux-config --get-hw-description hardware/xilinx-zcu102-2022.1/outputs/project_1.xsa
 
 # 增加time选项是为了查看最终编译花了多长时间
 time petalinux-build
