@@ -5,7 +5,11 @@ FROM ubuntu:18.04
 # install dependences:
 
 ARG UBUNTU_MIRROR
-RUN [ -z "${UBUNTU_MIRROR}" ] || sed -i.bak s/archive.ubuntu.com/${UBUNTU_MIRROR}/g /etc/apt/sources.list 
+# RUN [ -z "${UBUNTU_MIRROR}" ] || sed -i.bak s/archive.ubuntu.com/${UBUNTU_MIRROR}/g /etc/apt/sources.list 
+RUN if [ -n "${UBUNTU_MIRROR}" ]; then \
+    sed -i.bak "s|archive.ubuntu.com|${UBUNTU_MIRROR}|g" /etc/apt/sources.list && \
+    sed -i "s|security.ubuntu.com|${UBUNTU_MIRROR}|g" /etc/apt/sources.list; \
+fi
 
 RUN apt-get update &&  DEBIAN_FRONTEND=noninteractive apt-get install -y -q \
   emacs \
@@ -108,7 +112,6 @@ USER vivado
 ENV HOME /home/vivado
 ENV LANG en_US.UTF-8
 RUN mkdir /home/vivado/project
-COPY auto.sh /home/vivado/project
 RUN sudo chown -R vivado:vivado /home/vivado/project
 WORKDIR /home/vivado/project
 
